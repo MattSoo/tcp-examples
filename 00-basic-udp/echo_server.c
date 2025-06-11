@@ -10,6 +10,10 @@
 #include <stdlib.h>
 
 int main() {
+
+  char *host = NULL;
+  char *port = "12345";
+
   struct addrinfo hints;
   memset(&hints, 0, sizeof(hints));
   hints.ai_family = AF_UNSPEC;
@@ -18,7 +22,7 @@ int main() {
   hints.ai_flags = AI_PASSIVE; // Use my IP address
 
   struct addrinfo *bind_address;
-  if (getaddrinfo(NULL, "12345", &hints, &bind_address)) {
+  if (getaddrinfo(host, port, &hints, &bind_address)) {
     perror("getaddrinfo() failed");
     freeaddrinfo(bind_address);
     return 1;
@@ -39,15 +43,15 @@ int main() {
     return 1;
   }
 
-  freeaddrinfo(bind_address);
-
   char ap[100];
   const int family_size = bind_address->ai_family ==
     AF_INET ? sizeof(struct sockaddr_in) : sizeof(struct sockaddr_in6);
   
   getnameinfo(bind_address->ai_addr, family_size,
     ap, sizeof(ap), 0, 0, NI_NUMERICHOST);
-  printf("Successfully bind to %s:12345\n", ap);
+  printf("Successfully bind to %s:%s\n", ap, port);
+
+  freeaddrinfo(bind_address);
 
   while(1) {
     struct sockaddr_storage client_address;

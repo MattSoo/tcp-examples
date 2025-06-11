@@ -11,7 +11,7 @@
 int main(int argc, char **argv) {
 
   if (argc != 3 && argc != 2) {
-    printf("Usage: %s [host] [port]\n", argv[0]);
+    fprintf(stderr,"Usage: %s [host] [port]\n", argv[0]);
     return 1;
   }
 

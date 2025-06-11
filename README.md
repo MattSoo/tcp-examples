@@ -1,6 +1,6 @@
 # C TCP Socket Programming Examples
 
-A collection of TCP client-server examples written in C to demonstrate how to build networked applications using low-level socket APIs on Linux. This repo is ideal for students, system programmers, or anyone learning network programming in C.
+A collection of TCP client-server examples written in C to demonstrate how to build networked applications using low-level socket APIs on Linux.
 
 ## Contents
 

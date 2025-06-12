@@ -10,20 +10,13 @@
 
 int main(int argc, char **argv) {
 
-  if (argc != 3 && argc != 2) {
+  if (argc != 3) {
     fprintf(stderr,"Usage: %s [host] [port]\n", argv[0]);
     return 1;
   }
 
-  char *host = NULL;
-  char *port = "12345";
-  if (argc == 3) {
-    host = argv[1];
-    port = argv[2];
-  } else if (argc == 2)
-  {
-    host = argv[1];
-  }
+  char *host = argv[1];
+  char *port = argv[2];
 
   struct addrinfo hint;
   hint.ai_family = AF_UNSPEC;

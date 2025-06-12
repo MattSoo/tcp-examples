@@ -9,10 +9,23 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main() {
+int main(int argc, char *argv[]) {
+  if (argc != 2 && argc != 3) {
+    fprintf(stderr,"Usage: %s [host] [port]\n", argv[0]);
+    fprintf(stderr,"Usage: %s [port]\n", argv[0]);
+    return 1;
+  }
 
   char *host = NULL;
-  char *port = "12345";
+  char *port = argv[1];
+
+  if (argc == 2) {
+    port = argv[1];
+  } else if (argc == 3)
+  {
+    host = argv[1];
+    port = argv[2];
+  }
 
   struct addrinfo hints;
   memset(&hints, 0, sizeof(hints));

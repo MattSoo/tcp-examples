@@ -53,11 +53,13 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  printf("Connected to %s:%s\n", host, port);
+
   freeaddrinfo(bind_address);
 
+  char message[1024];
   while (1)
   {
-    char message[1024];
     printf("Enter message: ");
     if (!fgets(message, sizeof(message), stdin)) break;
     message[strcspn(message, "\n")] = 0;
